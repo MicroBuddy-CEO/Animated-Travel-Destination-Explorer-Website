@@ -5,9 +5,7 @@ export default function BtnSlider({ direction, moveSlide }) {
   return (
     <button
       onClick={moveSlide}
-      className={`${
-        direction === "next" ? "btn-slide next border" : "btn-slide prev border"
-      }`}
+      className={`${direction === "next" ? "btn-slide next border" : "btn-slide prev border"} bottom-10 left-[800px]`}
     >
       {direction === "next" ? (
         <BsArrowLeftCircle className="text-[40px] ml-[150px]" />
