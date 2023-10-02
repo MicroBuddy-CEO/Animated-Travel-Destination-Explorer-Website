@@ -4,7 +4,9 @@ import "./Test.css"; // Create this CSS file for styling
 
 
 const GridSplitTransition = () => {
+
   useEffect(() => {
+
     const grid = document.getElementById("grid");
     const splitRoot = 3;
     const splitUnit = 100 / splitRoot;

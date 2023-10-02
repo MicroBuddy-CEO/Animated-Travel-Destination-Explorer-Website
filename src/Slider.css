@@ -1,102 +1,88 @@
-.slide {
-  position: absolute;
-  opacity: 0;
-  transition: opacity ease-in-out 05s;
-  width: 900px;
-  height: 900px;
-  border-radius: 50%;
-}
-
-.slide .mainImg {
-  margin-left: 100px;
-  margin-top: 100px;
-  width: 80%;
-  height: 80%;
-  border-radius: 50%;
-  object-fit: fill;
-}
-
-.active-anim {
-  opacity: 1;
-}
-
-.active-anim img {
-  border-radius: 100%;
-  animation: fahim 2s ease-in-out;
-}
-
-@keyframes fahim {
-  0% {
-    transform: rotate(0);
-    opacity: 1;
-  }
-  100% {
-    transform: rotate(360deg);
-    opacity: 1;
-  }
-}
-
-/* .next-slide,
- img {
-  rotate: 360deg;
-  animation-delay: 0.5s;
-  animation: jewel 3s ease-in-out;
-}
-
-@keyframes jewel {
-  0% {
-    transform: rotate(0);
-    opacity: 1;
-  }
-  100% {
-    transform: rotate(360deg);
-    opacity: 1;
-  }
-} */
-
-.dot {
-  width: 10px;
-  height: 10px;
-  background-color: red;
-  display: flex;
-  margin: 20px;
-  cursor: pointer;
-  border-radius: 50%;
-}
-
-.btn-slide {
-  position: absolute;
+.container-slider {
+  position: relative;
+  width: 500px;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  perspective: 500px;
 }
 
-.dot.dot-active {
-  border: 1px solid green;
-  padding: 2px;
-  scale: 1.7;
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 2s ease, opacity 3s ease;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform-origin: center center;
+  opacity: 0;
+}
+
+.active-slide {
+  opacity: 1;
+  transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.bg-active,
+.prev-slide {
+  transform: rotate(360deg);
+  opacity: 0;
+  z-index: 1;
+}
+
+.bg-active,
+.next-slide {
+  transform: rotate(-360deg);
+  opacity: 0;
+  z-index: 1;
+}
+
+.mainImg {
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
-.bgSlide {
-  border: 2px solid green;
+.container-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
-/* 
-.bgSlide {
-  animation-delay: 1s;
-  animation: vsb 2s ease-in-out;
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #ddd;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-*/
+
+.dot-active {
+  background-color: #333;
+}
+
+.bg {
+  opacity: 0;
+}
+
+.bg-active {
+  opacity: 1;
+  animation: bgAnim 1.7s ease-in-out;
+}
 
 
-@keyframes bangla {
-  0% {
-    transform: rotate(0);
+@keyframes bgAnim{
+  0%{
+    transform: rotate(0deg);
     opacity: 1;
   }
-  100% {
+  100%{
     transform: rotate(-360deg);
     opacity: 1;
   }
-} 
+}

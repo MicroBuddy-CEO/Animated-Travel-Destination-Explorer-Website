@@ -1,11 +1,9 @@
 import Slider from "./Slider";
-import GridSplitTransition from "./Test/Test";
 
 const App = () => {
   return (
-    <div className="border border-red-600">
-        {/* <Slider /> */}
-        <GridSplitTransition/>
+    <div className="border-2 border-red-600 w-screen h-screen p-[10px] mx-auto">
+        <Slider />
     </div>
   );
 };
