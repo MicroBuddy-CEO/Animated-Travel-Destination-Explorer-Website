@@ -1,4 +1,4 @@
-*{
+/* *{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -30,4 +30,33 @@ height: 100vh;
   top:0;
   left:0;
   z-index: 0;
+} */
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.grid-item {
+  position: absolute;
+  width: calc(100vw / 3); /* Adjust the size of each circle here */
+  height: calc(100vh / 3); /* Adjust the size of each circle here */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item {
+  flex: 1 0 calc(33.33% - 2px);
+  height: calc(33.33% - 2px);
+  margin: 1px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transform-origin: center center;
 }
