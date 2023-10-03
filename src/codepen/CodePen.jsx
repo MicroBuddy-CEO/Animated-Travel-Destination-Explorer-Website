@@ -1,54 +1,65 @@
-import  { useState, useEffect } from 'react';
-import './CodePen.css'; // Replace 'YourComponent.css' with your CSS file path
-
-const images = [
-  'https://www.inspiringtravelscotland.com/wp-content/uploads/2019/05/Quiraing-Skye-Scottish-Highlands.jpg',
-  'https://www.worldatlas.com/r/w1200/upload/05/71/c2/shutterstock-713084413.jpg',
-  'https://www.nestcampers.com/sites/default/files/blog/dolomites_lago%20di%20braies.png',
-  'https://idsb.tmgrup.com.tr/ly/uploads/images/2021/09/24/146502.jpg',
-];
+import { useState, useEffect } from "react";
+import "./CodePen.css";
+import img1 from "../assets/img1.jpg";
+import img2 from "../assets/img2.jpg";
+import img3 from "../assets/img3.jpg";
+import img4 from "../assets/img4.jpg";
 
 function YourComponent() {
+  const images = [img1, img2, img3, img4];
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const elementsArray = document.querySelectorAll(".circle");
-  
+
   useEffect(() => {
-    // Initialize header with the first image
+    const updateBackgroundImage = () => {
+      elementsArray.forEach(function (elem) {
+        elem.classList.add("circle-animate");
+      });
+
+      setTimeout(() => {
+        setCurrentImageIndex((prevIndex) => {
+          const nextIndex = prevIndex + 1 >= images.length ? 0 : prevIndex + 1;
+          elementsArray.forEach(function (elem) {
+            elem.style.backgroundImage = "url('" + images[nextIndex] + "')";
+            elem.classList.remove("circle-animate");
+          });
+          return nextIndex;
+        });
+      }, 2000); 
+    };
+
     elementsArray.forEach(function (elem) {
-      elem.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+      elem.style.backgroundImage = "url('" + images[currentImageIndex] + "')";
+    });
+
+    const button = document.querySelector(".btn");
+
+    button.addEventListener("click", function () {
+      button.classList.add("btn-animate");
+      updateBackgroundImage();
+    });
+
+    button.addEventListener("animationend", function () {
+      button.classList.remove("btn-animate");
     });
   }, []);
 
-  const handleButtonClick = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-
-    // Start animation
-    elementsArray.forEach(function (elem) {
-      elem.classList.add("circle-animate");
-    });
-
-    setTimeout(() => {
-      // Register circle animationEnd event
-      elementsArray.forEach(function (elem) {
-        elem.style.backgroundImage = `url('${images[currentImageIndex]}')`;
-        elem.classList.remove("circle-animate");
-      });
-    }, 2000); // 2 seconds animation duration
-  };
-
   return (
-    <div className="header">
-      {images.map((imageUrl, index) => (
-        <div
-          key={index}
-          className={`circle${index === 1 ? ' overlay' : ''}`}
-        ></div>
-      ))}
-      <button className="btn" onClick={handleButtonClick}>
-        <span className="material-symbols-outlined">cached</span>
+    <section>
+      <div className="header">
+        <div className="circle"></div>
+        <div className="circle">
+          <div className="overlay"></div>
+        </div>
+        <div className="circle"></div>
+      </div>
+
+      <button className="btn">
+        <span className="material-symbols-outlined">next</span>
       </button>
-    </div>
+    </section>
   );
 }
 
