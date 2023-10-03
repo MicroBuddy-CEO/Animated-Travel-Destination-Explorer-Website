@@ -125,7 +125,9 @@ import { gsap, TimelineMax } from "gsap";
 import "./Test.css"; // Create this CSS file for styling
 
 const GridSplitTransition = () => {
+
   useEffect(() => {
+
     const grid = document.getElementById("grid");
     const splitRoot = 3; // Number of circles in each row and column
     const images = [
