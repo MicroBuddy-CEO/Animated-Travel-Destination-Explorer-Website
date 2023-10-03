@@ -1,17 +1,29 @@
 .container-slider {
   position: relative;
-  width: 500px;
-  height: 500px;
+  width: 800px;
+  height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ******** Largest Background ********* */
+.slider-largest-background {
+  position: absolute;
+  width: 800px;
+  height: 800px;
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 500px;
+  perspective: 800px;
 }
 
-.slide {
+.slide-larget-background {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 800px;
+  height: 800px;
+  animation-delay: 2s !important;
   transition: transform 2s ease, opacity 3s ease;
   transform-style: preserve-3d;
   backface-visibility: hidden;
@@ -19,42 +31,103 @@
   opacity: 0;
 }
 
-.active-slide {
+.slider-largest-background .active-slide {
   opacity: 1;
-  transform: rotateY(0deg);
-  z-index: 2;
-}
-
-.bg-active,
-.prev-slide {
   transform: rotate(360deg);
-  opacity: 0;
   z-index: 1;
 }
 
-.bg-active,
-.next-slide {
-  transform: rotate(-360deg);
-  opacity: 0;
-  z-index: 1;
-}
-
-.mainImg {
-  width: 500px;
-  height: 500px;
+.largest-backgroundImg {
+  width: 800px;
+  height: 800px;
   border-radius: 50%;
-  object-fit: cover;
+  object-fit: fill;
 }
 
+
+/* ********Larger Background********* */
+.slider-background {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 700px;
+}
+
+.slide-background {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  animation-delay: 2s !important;
+  transition: transform 2s ease, opacity 3s ease;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform-origin: center center;
+  opacity: 0;
+}
+
+.slider-background .active-slide {
+  opacity: 1;
+  transform: rotate(-360deg);
+  z-index: 1;
+}
+
+.backgroundImg {
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  object-fit: fill;
+}
+
+/* ******* Foreground ******** */
+.slider-foreground {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 600px;
+}
+
+.slide-foreground {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  transition: transform 2s ease, opacity 3s ease;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform-origin: center center;
+  opacity: 0;
+}
+
+.slider-foreground .active-slide {
+  opacity: 1;
+  transform: rotate(360deg);
+  z-index: 5;
+}
+
+.foregroundImg {
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  object-fit: fill;
+}
+
+/* ************* Dots *************** */
 .container-dots {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  margin-left: 800px;
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
+  z-index: 500;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   background-color: #ddd;
   margin: 0 5px;
@@ -64,25 +137,4 @@
 
 .dot-active {
   background-color: #333;
-}
-
-.bg {
-  opacity: 0;
-}
-
-.bg-active {
-  opacity: 1;
-  animation: bgAnim 1.7s ease-in-out;
-}
-
-
-@keyframes bgAnim{
-  0%{
-    transform: rotate(0deg);
-    opacity: 1;
-  }
-  100%{
-    transform: rotate(-360deg);
-    opacity: 1;
-  }
 }

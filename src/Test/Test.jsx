@@ -1,251 +1,61 @@
-// import  { useEffect } from "react";
-// import { gsap, TimelineMax } from "gsap";
-// import "./Test.css"; // Create this CSS file for styling
+import React, { useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
+import img1 from "../assets/img1.jpg";
+import img2 from "../assets/img2.jpg";
+import img3 from "../assets/img3.jpg";
+import img4 from "../assets/img4.jpg";
 
-// const GridSplitTransition = () => {
-//   useEffect(() => {
-//     const grid = document.getElementById("grid");
-//     const splitRoot = 3;
-//     const splitUnit = 100 / splitRoot;
-//     const splitSquare = splitRoot ** 2;
-//     const images = [
-//       "https://i.imgur.com/25VPnJp.jpg",
-//       "https://i.imgur.com/swK0rjR.jpg",
-//       "https://i.imgur.com/rumePhx.jpg",
-//       "https://i.imgur.com/S3UmKmM.jpg",
-//       "https://i.imgur.com/KnjxZ2L.jpg",
-//     ];
+import "./Test.css";
 
-//     Array(splitSquare)
-//       .fill(0)
-//       .forEach((_, index) => {
-//         const offsetW = `-${(index % splitRoot) * splitUnit}vw`;
-//         const offsetH = `-${Math.floor(index / splitRoot) * splitUnit}vh`;
-//         const gridItem = document.createElement("DIV");
-//         gridItem.setAttribute("class", "grid-item");
-//         Array(5)
-//           .fill(0)
-//           .forEach((_, subIndex) => {
-//             const item = document.createElement("DIV");
-//             item.setAttribute("class", "item");
-//             item.setAttribute("id", `item-${index}-${subIndex}`);
-//             item.style.background = `url('${images[subIndex]}')`;
-//             item.style.backgroundSize = "100vw 100vh";
-//             item.style.backgroundPosition = `${offsetW} ${offsetH}`;
-//             gridItem.appendChild(item);
-//           });
-//         grid.appendChild(gridItem);
-//       });
+const Test = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-//     const items = Array(5)
-//       .fill(0)
-//       .map((_, i) => i);
+  const imgs = [img1, img2, img3, img4];
 
-//     const getPprv = (i) => {
-//       if (i === 0) return items[3];
-//       if (i === 1) return items[4];
-//       return items[i - 2];
-//     };
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: currentImageIndex,
+    afterChange: (index) => setCurrentImageIndex(index),
+  };
 
-//     const getPrv = (i) => {
-//       if (i === 0) return items[4];
-//       return items[i - 1];
-//     };
+  const handleButtonClick = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === imgs.length - 1 ? 0 : prevIndex + 1
+    );
 
-//     const getNext = (i) => {
-//       if (i === 4) return 0;
-//       return i + 1;
-//     };
-
-//     const getRandomAnimation = () => {
-//       const r = Math.floor(Math.random() * 4);
-//       return [
-//         { x: `${splitUnit}vw`, y: "0vh" },
-//         { x: `-${splitUnit}vw`, y: "0vh" },
-//         { x: "0vw", y: `${splitUnit}vh` },
-//         { x: "0vw", y: `-${splitUnit}vh` },
-//       ][r];
-//     };
-
-//     const getId = (i, j) => {
-//       return `#item-${j}-${i}`;
-//     };
-
-//     const loop = (i) => {
-//       const prv = getPrv(i);
-//       const pprv = getPprv(i);
-//       const current = items[i];
-
-//       const tl = new TimelineMax({ onComplete: () => loop(getNext(i)) });
-
-//       Array(splitSquare)
-//         .fill(0)
-//         .forEach((_, j) => {
-//           tl.set(getId(pprv, j), { zIndex: 0 });
-//           tl.set(getId(prv, j), { zIndex: 1 });
-//         });
-//       tl.set({}, {}, "animationStart");
-
-//       Array(9)
-//         .fill(0)
-//         .forEach((_, j) => {
-//           const delay = 0.5;
-//           tl.fromTo(
-//             getId(current, j),
-//             { ...getRandomAnimation(), zIndex: 2 },
-//             { duration: 2, x: "0vw", y: "0vh", zIndex: 2, ease: " sine.in" },
-//             `animationStart+=${delay}`
-//           );
-//           tl.fromTo(
-//             getId(current, j),
-//             { backgroundSize: `150vw 150vh` },
-//             { backgroundSize: `100vw 100vh`, duration: 4, ease: " sine.in" },
-//             `animationStart+=${delay}`
-//           );
-//         });
-//     };
-
-//     gsap.registerPlugin(TimelineMax);
-//     window.addEventListener("load", () => {
-//       loop(4);
-//     });
-
-//     return () => {
-//       // Cleanup if necessary
-//     };
-//   }, []);
-
-//   return <div className="grid" id="grid"></div>;
-// };
-
-// export default GridSplitTransition;
-import React, { useEffect } from "react";
-import { gsap, TimelineMax } from "gsap";
-import "./Test.css"; // Create this CSS file for styling
-
-const GridSplitTransition = () => {
-
-  useEffect(() => {
-
-    const grid = document.getElementById("grid");
-    const splitRoot = 3; // Number of circles in each row and column
-    const images = [
-      "https://i.imgur.com/25VPnJp.jpg",
-      "https://i.imgur.com/swK0rjR.jpg",
-      "https://i.imgur.com/rumePhx.jpg",
-      "https://i.imgur.com/S3UmKmM.jpg",
-      "https://i.imgur.com/KnjxZ2L.jpg",
-    ];
-
-    Array(splitRoot)
-      .fill(0)
-      .forEach((_, rowIndex) => {
-        Array(splitRoot)
-          .fill(0)
-          .forEach((_, colIndex) => {
-            const index = rowIndex * splitRoot + colIndex;
-            const angle = (index / splitRoot) * (2 * Math.PI); // Calculate the angle
-            const radius = 50; // Radius of the circle
-            const x = radius * Math.cos(angle);
-            const y = radius * Math.sin(angle);
-
-            const gridItem = document.createElement("DIV");
-            gridItem.setAttribute("class", "grid-item");
-            Array(5)
-              .fill(0)
-              .forEach((_, subIndex) => {
-                const item = document.createElement("DIV");
-                item.setAttribute("class", "item");
-                item.setAttribute("id", `item-${index}-${subIndex}`);
-                item.style.background = `url('${images[subIndex]}')`;
-                item.style.backgroundSize = "100vw 100vh";
-                item.style.backgroundPosition = `${x}vw ${y}vh`; // Set the position based on x and y
-                gridItem.appendChild(item);
-              });
-            grid.appendChild(gridItem);
-          });
-      });
-
-    const items = Array(5)
-      .fill(0)
-      .map((_, i) => i);
-
-    const getPprv = (i) => {
-      if (i === 0) return items[3];
-      if (i === 1) return items[4];
-      return items[i - 2];
-    };
-
-    const getPrv = (i) => {
-      if (i === 0) return items[4];
-      return items[i - 1];
-    };
-
-    const getNext = (i) => {
-      if (i === 4) return 0;
-      return i + 1;
-    };
-
-    const getRandomAnimation = () => {
-      const r = Math.floor(Math.random() * 4);
-      return [
-        { x: `${100 / splitRoot}vw`, y: "0vh" },
-        { x: `-${100 / splitRoot}vw`, y: "0vh" },
-        { x: "0vw", y: `${100 / splitRoot}vh` },
-        { x: "0vw", y: `-${100 / splitRoot}vh` },
-      ][r];
-    };
-
-    const getId = (i, j) => {
-      return `#item-${j}-${i}`;
-    };
-
-    const loop = (i) => {
-      const prv = getPrv(i);
-      const pprv = getPprv(i);
-      const current = items[i];
-
-      const tl = new TimelineMax({ onComplete: () => loop(getNext(i)) });
-
-      Array(splitRoot * splitRoot)
-        .fill(0)
-        .forEach((_, j) => {
-          tl.set(getId(pprv, j), { zIndex: 0 });
-          tl.set(getId(prv, j), { zIndex: 1 });
-        });
-      tl.set({}, {}, "animationStart");
-
-      Array(9)
-        .fill(0)
-        .forEach((_, j) => {
-          const delay = 0.5;
-          tl.fromTo(
-            getId(current, j),
-            { ...getRandomAnimation(), zIndex: 2 },
-            { duration: 2, x: "0vw", y: "0vh", zIndex: 2, ease: " sine.in" },
-            `animationStart+=${delay}`
-          );
-          tl.fromTo(
-            getId(current, j),
-            { backgroundSize: `${(100 / splitRoot) * 1.5}vw ${(100 / splitRoot) * 1.5}vh` },
-            { backgroundSize: `${100 / splitRoot}vw ${100 / splitRoot}vh`, duration: 4, ease: " sine.in" },
-            `animationStart+=${delay}`
-          );
-        });
-    };
-
-    gsap.registerPlugin(TimelineMax);
-    window.addEventListener("load", () => {
-      loop(4);
+    // Add the animate class to trigger the animation
+    const circles = document.querySelectorAll(".circle");
+    circles.forEach((circle) => {
+      circle.classList.add("animate");
+      setTimeout(() => {
+        circle.classList.remove("animate");
+      }, 1000); // Remove the animate class after 1 second (matching the animation duration)
     });
+  };
 
-    return () => {
-      // Cleanup if necessary
-    };
-  }, []);
-
-  return <div className="grid" id="grid"></div>;
+  return (
+    <div className="slider-container">
+      <Slider {...settings}>
+        {imgs.map((imageUrl, index) => (
+          <div key={index}>
+            <div className={`circle ${currentImageIndex === index ? "animate" : ""}`}>
+              <img src={imageUrl} alt={`Image ${index}`} />
+            </div>
+          </div>
+        ))}
+      </Slider>
+      <button className="btn" onClick={handleButtonClick}>
+        <span className="material-symbols-outlined">cached</span>
+      </button>
+    </div>
+  );
 };
 
-export default GridSplitTransition;
+export default Test;
