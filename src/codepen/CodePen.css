@@ -104,3 +104,31 @@
       -webkit-transform: rotate(360deg);
     }    
 }
+
+.next-btn {
+  position: absolute;
+  margin: 10px;
+  bottom: 0;
+  right: 0;
+  background-color: #ecf0f1;
+  outline: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 100%;
+  border-width: 0px;
+  z-index: 99;
+  text-align: center;
+  cursor: pointer;
+}
+
+.next-btn:active {
+  background-color: #bdc3c7;
+}
+
+.next-btn.btn-animate {
+  animation: rotate 3s ease-in-out; 
+}
+
+
+
+

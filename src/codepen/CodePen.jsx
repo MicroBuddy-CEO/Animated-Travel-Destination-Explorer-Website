@@ -5,7 +5,7 @@ import img2 from "../assets/img2.jpg";
 import img3 from "../assets/img3.jpg";
 import img4 from "../assets/img4.jpg";
 
-function YourComponent() {
+function CodePen() {
   const images = [img1, img2, img3, img4];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -63,4 +63,5 @@ function YourComponent() {
   );
 }
 
-export default YourComponent;
+export default CodePen;
+
