@@ -23,7 +23,7 @@
   position: absolute;
   width: 2402px;
   height: 2402px;
-  transition: transform 2s ease, opacity 3s ease;
+  transition: transform 3s ease, opacity 3s ease;
   transform-style: preserve-3d;
   backface-visibility: hidden;
   transform-origin: center center;
@@ -58,7 +58,7 @@
   position: absolute;
   width: 1454px;
   height: 1454px;
-  transition: transform 2s ease, opacity 3s ease;
+  transition: transform 2.5s ease, opacity 3s ease;
   transform-style: preserve-3d;
   backface-visibility: hidden;
   transform-origin: center center;
@@ -128,7 +128,7 @@
   height: 15px;
   padding: 2px;
   border-radius: 50%;
-  background-color: #ddd;
+  background-color: #fff;
   margin: 5px 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -144,3 +144,59 @@
   );
 }
 
+.slide-foreground .textcontent .active-slide {
+  animation: textCont 5s ease-in-out;
+  opacity: 0;
+}
+
+@keyframes textCont {
+  0% {
+    opacity: 0;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.fade-in h1 {
+  animation: title 1.5s ease-in-out;
+}
+
+@keyframes title {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+.fade-in p {
+  animation: description 1.5s ease-in-out;
+}
+
+@keyframes description {
+  0% {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
