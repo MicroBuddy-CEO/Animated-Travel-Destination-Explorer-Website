@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./Slider.css";
 
 export default function Slider() {
+  
   const [slideIndex, setSlideIndex] = useState(1);
   const [textAnimationClass, setTextAnimationClass] = useState("fade-in");
 
@@ -64,43 +65,30 @@ export default function Slider() {
       <div className="slider-foreground relative">
         {[1, 2, 3].map((obj, index) => {
           const isActiveSlide = slideIndex === index + 1;
-          // const content = slideContent[index];
           return (
-            <div
-              key={obj.id}
-              className={`slide-foreground flex flex-col justify-center items-center ${
-                isActiveSlide ? "active-slide" : ""
-              }`}
-            >
-              <img
-                src={`../../src/assets/sm${index + 1}.jpg`}
-                alt=""
-                className="foregroundImg"
-              />
+            <div key={obj.id} className={`slide-foreground  ${ isActiveSlide ? "active-slide" : ""}`}>
+              <img src={`../../src/assets/sm${index + 1}.jpg`} alt="" className="foregroundImg"/>
             </div>
           );
         })}
       </div>
 
       {/* Text Slider */}
-      <div className={`slider-text absolute ${textAnimationClass}`}>
-        <div className={`flex flex-col items-center ${ slideIndex ? "text-visible" : ""}`}>
-
-          <h1 className="text-[165px] text-white uppercase tracking-[62px] leading-[0px]">
+      <div className={`absolute ${textAnimationClass}`}>
+        <div className={`slider-text font-Inter`}>
+          <h1>
             {slideIndex === 1 ? "Indonesia" : slideIndex === 2 ? "Nepal": "Thailand"}
           </h1>
           
-          <div className="w-[80%] h-[4px] bg-[#979696] opacity-[50%] mt-[100px]" />
+          <div className="divider" />
 
-          <p className="mt-[20px] font-Inter text-[25px] text-white uppercase tracking-[40px] drop-shadow-lg">
+          <p className="font-Inter">
             {slideIndex === 1 ? "Desert View" : slideIndex === 2 ? "River View" : "Hills View"}
           </p>
-          
         </div>
-
       </div>
 
-      {/* Dots */}
+      {/* Pagination Dots */}
       <div className="container-dots">
         {Array.from({ length: 3 }).map((item, index) => (
           <div
@@ -110,6 +98,7 @@ export default function Slider() {
           ></div>
         ))}
       </div>
+      
     </div>
   );
 }

@@ -7,7 +7,6 @@ export default {
   theme: {
     fontFamily: {
       'Inter': ['Inter', 'san-serif'],
-      'Montserrat': ['Montserrat', 'san-serif'],
     },
     extend: {},
   },
