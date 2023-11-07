@@ -26,15 +26,8 @@ export default function Slider() {
           return (
             <div
               key={obj.id}
-              className={`slide-larget-background ${
-                isActiveSlide ? "active-slide" : ""
-              }`}
-            >
-              <img
-                src={`../../src/assets/xl${index + 1}.jpg`}
-                alt=""
-                className="largest-backgroundImg"
-              />
+              className={`slide-larget-background ${ isActiveSlide ? "active-slide" : ""}`} >
+              <img src={`/xl${index+1}.jpg`} alt="" className="largest-backgroundImg"/>
             </div>
           );
         })}
@@ -52,7 +45,7 @@ export default function Slider() {
               }`}
             >
               <img
-                src={`../../src/assets/lg${index + 1}.jpg`}
+                src={`/lg${index + 1}.jpg`}
                 alt=""
                 className="backgroundImg"
               />
@@ -67,7 +60,7 @@ export default function Slider() {
           const isActiveSlide = slideIndex === index + 1;
           return (
             <div key={obj.id} className={`slide-foreground  ${ isActiveSlide ? "active-slide" : ""}`}>
-              <img src={`../../src/assets/sm${index + 1}.jpg`} alt="" className="foregroundImg"/>
+              <img src={`/sm${index + 1}.jpg`} alt="" className="foregroundImg"/>
             </div>
           );
         })}

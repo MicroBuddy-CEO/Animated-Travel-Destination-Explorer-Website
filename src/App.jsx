@@ -10,6 +10,7 @@ const App = () => {
       <div className=" w-full absolute top-0 left-0 z-[99999]">
         <Navbar />
       </div>
+      
       <Slider />
 
       <div className="absolute bottom-[250px] right-[100px]">
